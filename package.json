@@ -1,14 +1,26 @@
 {
   "name": "note-taker",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "description": "A note taking app for UW bootcamp ",
+  "main": "index.js",
+  "dependencies": {
+    "database": "^0.0.2",
+    "db": "^3.3.1",
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/walkerj90/note-taker.git"
+  },
+  "author": "Justin Walker",
   "license": "ISC",
-  "dependencies": {
-    "express": "^4.16.4"
-  }
+  "bugs": {
+    "url": "https://github.com/walkerj90/note-taker/issues"
+  },
+  "homepage": "https://github.com/walkerj90/note-taker#readme"
 }
