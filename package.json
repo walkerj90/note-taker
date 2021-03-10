@@ -12,7 +12,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node server.js"
+    "start": "webpack-dev-server --mode development --hot --open --port $PORT",
+    "build": "npm i -dev && webpack --mode production",
+    "heroku-postbuild": "npm build"
   },
   "repository": {
     "type": "git",
