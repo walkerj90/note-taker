@@ -22,7 +22,7 @@ app.use(express.json());
 
 //request and response 
 app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "public/index.html"));
+    res.sendFile(path.join(__dirname, "/index.html"));
 });
 //request and response for notes page
 app.get("/notes", function (req, res) {
