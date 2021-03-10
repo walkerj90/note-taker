@@ -9,7 +9,8 @@ An app designed to be used for writing, saving and deleting notes from a JSON da
 
 ## Demo
 
-![Demonstration of Note-Taker]()
+![Demonstration of Note-Taker](![notetakergif](https://user-images.githubusercontent.com/72112742/110606500-1a5a9980-813f-11eb-80ad-37d1c028a4a9.gif)
+)
 
 # Languages and Technologies Used
     * Javascript
