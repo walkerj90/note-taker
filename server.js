@@ -6,62 +6,80 @@ const database = require("./db/db.json");
 
 
 //sets up express
-var app = express();
-var PORT = process.env.port || 5500;
+const app = express();
+const PORT = process.env.port || 5500;
+
+//sets the id so I can add to it later for each note being made into the db
+let NoteId = 1;
 
 
 //link to assets
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, "public")));
 
-//setting up data parsing - interpret as JSON
+//setting up data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //request and response 
-
 app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "index.html"));
 });
-
+//request and response for notes page
 app.get("/notes", function (req, res) {
     res.sendFile(path.join(__dirname, "public/notes.html"))
 });
 
 // get, post, and delete endpoints
-
 app.route("/api/notes")
-    // Grabs the notes list 
+
+    // Grabs the notes list in json format when prompted with get
     .get(function (req, res) {
         res.json(database);
     })
 
-    //posts a new note to the DB
-    .post(function (req, res) {
-        let jsonFilePath = path.join(__dirname, "/db/db.json");
-        let newNote = req.body;
+//posts a new note to the DB
+app.post('/api/notes', (req, res) => {
 
-        let topId = 99;
+    let jsonFilePath = path.join(__dirname, "/db/db.json");
+    const note = {
+        id: NoteId++,
+        title: req.body.title,
+        text: req.body.text,
+    };
 
-        for (let i = 0; i < database.length; i++) {
-            let indivNote = database[i];
 
-            if (indivNote.id > topId) {
-                topId = indivNote.id;
-            }
+    database.push(note);
+    //Save to db.json in json format
+    fs.writeFileSync("./db/db.json", JSON.stringify(database));
+    res.json(true);
+});
+
+app.delete("/api/notes/:id", function (req, res) {
+    let jsonFilePath = path.join(__dirname, "/db/db.json");
+    // request to delete note by id.
+    for (let i = 0; i < database.length; i++) {
+
+        //splice the note database array by 1
+        if (database[i].id == req.params.id) {
+            database.splice(i, 1);
+            break;
         }
+    }
+    // Write the db.json file again.
+    fs.writeFileSync(jsonFilePath, JSON.stringify(database), function (err) {
 
-        newNote.id = topId + 1;
-
-        database.push(newNote)
-
-        fs.writeFile(jsonFilePath, JSON.stringify(database), function (err) {
-
-            if (err) {
-                return console.log(err);
-            }
-        });
-        res.json(newNote);
+        if (err) {
+            return console.log(err);
+        } else {
+            console.log("Your note was deleted!");
+        }
     });
+    res.json(database);
+});
+
+app.get("*", function (req, res) {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
 
 //listen to start the server on the port specified 
 app.listen(PORT, function () {
