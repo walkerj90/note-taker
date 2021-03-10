@@ -7,7 +7,7 @@ const database = require("./db/db.json");
 
 //sets up express
 const app = express();
-const PORT = process.env.port || 5500;
+const PORT = process.env.port || 3001;
 
 //sets the id so I can add to it later for each note being made into the db
 let NoteId = 1;
@@ -77,11 +77,7 @@ app.delete("/api/notes/:id", function (req, res) {
     res.json(database);
 });
 
-app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, './public/index.html'));
-});
-
 //listen to start the server on the port specified 
 app.listen(PORT, function () {
-    console.log("App listening on PORT " + PORT);
+    console.log("App listening on PORT" + PORT);
 });
