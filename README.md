@@ -1,13 +1,12 @@
 # Note-Taker
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://sleepy-everglades-91170.herokuapp.com/)
-
 An app designed to be used for writing, saving and deleting notes from a JSON database file. 
 
 
 ---------------------------------
 
 ## Demo
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://sleepy-everglades-91170.herokuapp.com/)
 ![notetakergif](https://user-images.githubusercontent.com/72112742/110606500-1a5a9980-813f-11eb-80ad-37d1c028a4a9.gif)
 
 # Languages and Technologies Used
